@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1E1E1E"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Верхняя панель: длина пароля и служебные кнопки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvLengthLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Длина: 16"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/sbLength"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="64"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:progress="16" />
+
+        <!-- Кнопка удаления символов в поле -->
+        <Button
+            android:id="@+id/btnBackspace"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:minWidth="48dp"
+            android:text="⌫"
+            android:textColor="#FF6B6B"
+            android:textSize="18sp" />
+
+        <!-- Кнопка переключения на обычную клавиатуру -->
+        <Button
+            android:id="@+id/btnSwitchIme"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:minWidth="48dp"
+            android:text="🌐"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Галочки выбора наборов символов (2x2) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbLower"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="a-z (строчные)"
+            android:textColor="#E0E0E0" />
+
+        <CheckBox
+            android:id="@+id/cbUpper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="A-Z (заглавные)"
+            android:textColor="#E0E0E0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbDigits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="0-9 (цифры)"
+            android:textColor="#E0E0E0" />
+
+        <CheckBox
+            android:id="@+id/cbSymbols"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="!@#$%&amp;* (спец.)"
+            android:textColor="#E0E0E0" />
+    </LinearLayout>
+
+    <!-- Большие кнопки генерации -->
+    <Button
+        android:id="@+id/btnGenerate"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2E7D32"
+        android:text="СГЕНЕРИРОВАТЬ"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnGenerateAndCopy"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="6dp"
+        android:backgroundTint="#1565C0"
+        android:text="СГЕНЕРИРОВАТЬ И СКОПИРОВАТЬ В БУФЕР"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
