@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.application") version "8.7.3" apply false
-    id("org.jetbrains.kotlin.android") version "2.1.0" apply false
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -17,7 +17,6 @@ android {
         versionName = "1.0.0"
     }
 
-    // Отключаем проприетарный блок метаданных Google Play для F-Droid
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
@@ -57,5 +56,5 @@ kotlin {
 }
 
 dependencies {
-    // 0 сторонних зависимостей — минимальная поверхность атаки и вес APK ~50 КБ
+    // Zero external dependencies
 }

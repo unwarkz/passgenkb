@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+# Принудительно запускаем все JS-экшены GitHub на свежем Node.js 24 (убирает punycode warning)
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -16,16 +20,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: wrapper
+          gradle-version: '9.8.1'
 
       - name: Decode Keystore
         if: env.KEYSTORE_BASE64 != ''
@@ -40,15 +44,15 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: gradle assembleRelease --no-daemon
+        run: gradle assembleRelease --no-daemon --warning-mode=none
 
       - name: Prepare APK Artifact
         run: |
-           APK_PATH=$(find app/build/outputs/apk/release/ -name "*.apk" | head -n 1)
-           mv "$APK_PATH" "app/build/outputs/apk/release/passgen-${GITHUB_REF_NAME}.apk"
+          APK_PATH=$(find app/build/outputs/apk/release/ -name "*.apk" | head -n 1)
+          mv "$APK_PATH" "app/build/outputs/apk/release/passgenkb-${GITHUB_REF_NAME}.apk"
 
       - name: Upload to GitHub Releases
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: app/build/outputs/apk/release/passgen-${{ github.ref_name }}.apk
+          files: app/build/outputs/apk/release/passgenkb-${{ github.ref_name }}.apk

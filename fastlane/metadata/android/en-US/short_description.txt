@@ -1,0 +1,1 @@
+Password generator keyboard with no permissions and no internet access

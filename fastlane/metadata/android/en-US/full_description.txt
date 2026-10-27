@@ -1,0 +1,9 @@
+PassGen Keyboard is a minimalist, zero-permission Android Input Method (IME) designed exclusively for generating cryptographically secure passwords on the fly.
+
+Features:
+* Zero permissions: No internet access, no storage access, no tracking or ads.
+* Customizable character sets: lowercase (a-z), uppercase (A-Z), digits (0-9), and special symbols (!@#$%^&*).
+* Adjustable password length (from 4 to 64 characters) with guaranteed inclusion of at least one character from each selected set.
+* Two large action buttons: "Generate" (types directly into the active field) and "Generate & Copy" (types into the field and copies to the clipboard with sensitive content masking on Android 13+).
+* Built with zero external dependencies for minimal attack surface and tiny APK size (~50 KB).
+* Localized in English, Russian, and Kazakh.
