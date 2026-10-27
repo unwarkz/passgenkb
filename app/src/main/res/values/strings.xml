@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PassGen Keyboard</string>
+    <string name="keyboard_label">PassGen Password Generator</string>
+    <string name="app_desc">Password generator keyboard with no permissions and no internet. Generate secure passwords with custom options directly while typing.</string>
+    
+    <!-- MainActivity (Mini-screen) -->
+    <string name="main_title">PassGen Keyboard</string>
+    <string name="main_subtitle">Configuration and activation</string>
+    <string name="step_1">1. Enable PassGen Keyboard in settings</string>
+    <string name="step_2">2. Switch to PassGen as default</string>
+    <string name="btn_enable">Enable in Settings</string>
+    <string name="btn_choose">Switch Input Method</string>
+    <string name="security_banner">🔒 No permissions &amp; No internet access • Completely secure</string>
+    
+    <!-- Keyboard view -->
+    <string name="kb_length">Length: %1$d</string>
+    <string name="kb_cb_lower">a-z (lowercase)</string>
+    <string name="kb_cb_upper">A-Z (uppercase)</string>
+    <string name="kb_cb_digits">0-9 (digits)</string>
+    <string name="kb_cb_symbols">!@#$%&amp;* (special)</string>
+    <string name="kb_btn_generate">GENERATE</string>
+    <string name="kb_btn_gen_copy">GENERATE &amp; COPY</string>
+    <string name="toast_no_selection">Please select at least one character set</string>
+    <string name="toast_copied">Copied to clipboard</string>
+</resources>

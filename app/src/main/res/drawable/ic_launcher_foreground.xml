@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Щит безопасности (Security Shield) -->
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M32,24 L54,14 L76,24 L76,46 C76,64.2 66.6,80.7 54,88 C41.4,80.7 32,64.2 32,46 Z"/>
+    <path
+        android:fillColor="#1E88E5"
+        android:pathData="M35,26.5 L54,17.5 L73,26.5 L73,46 C73,61.8 64.9,76.2 54,83 C43.1,76.2 35,61.8 35,46 Z"/>
+    <path
+        android:fillColor="#00E676"
+        android:pathData="M54,22 L68,28.5 L68,46 C68,57.5 62,68.5 54,73.8 L54,22 Z"/>
+    
+    <!-- Замочная скважина -->
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M54,42 A5,5 0,1 0,54,52 A5,5 0,1 0,54,42 Z"/>
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M51.5,48.5 H56.5 L58,62 H50 Z"/>
+
+    <!-- Эскиз клавиатуры (справа внизу) -->
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M64,68 H90 A3,3 0,0 1,93,71 V83 A3,3 0,0 1,90,86 H64 A3,3 0,0 1,61,83 V71 A3,3 0,0 1,64,68 Z"/>
+    <path
+        android:fillColor="#42A5F5"
+        android:pathData="M66,71 H88 V81 H66 Z"/>
+    
+    <!-- Клавиши пернетақтасы -->
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M69,73 H72 V75 H69 Z M75,73 H78 V75 H75 Z M81,73 H84 V75 H81 Z M69,77 H72 V79 H69 Z M75,77 H81 V79 H75 Z M84,77 H87 V79 H84 Z"/>
+</vector>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PassGen Пернетақтасы</string>
+    <string name="keyboard_label">PassGen Құпиясөз генераторы</string>
+    <string name="app_desc">Рұқсаттарсыз және интернетсіз құпиясөз генератор-пернетақтасы. Пайдаланылатын таңбаларды және ұзындықты реттеуге, генерация кезінде құпиясөзді буферге көшіруге мүмкіндік береді.</string>
+    
+    <!-- MainActivity (Шағын экран) -->
+    <string name="main_title">PassGen Пернетақтасы</string>
+    <string name="main_subtitle">Баптау және белсендіру</string>
+    <string name="step_1">1. Параметрлерде PassGen пернетақтасын қосыңыз</string>
+    <string name="step_2">2. Енгізу әдісі ретінде PassGen таңдаңыз</string>
+    <string name="btn_enable">Баптауларда қосу</string>
+    <string name="btn_choose">Пернетақтаны таңдау</string>
+    <string name="security_banner">🔒 Рұқсаттарсыз және интернетсіз • Толықтай қауіпсіз</string>
+    
+    <!-- Keyboard view -->
+    <string name="kb_length">Ұзындығы: %1$d</string>
+    <string name="kb_cb_lower">a-z (кіші әріптер)</string>
+    <string name="kb_cb_upper">A-Z (бас әріптер)</string>
+    <string name="kb_cb_digits">0-9 (сандар)</string>
+    <string name="kb_cb_symbols">!@#$%&amp;* (арнайы)</string>
+    <string name="kb_btn_generate">ГЕНЕРАЦИЯЛАУ</string>
+    <string name="kb_btn_gen_copy">ГЕНЕРАЦИЯ ЖӘНЕ БУФЕРГЕ КӨШІРУ</string>
+    <string name="toast_no_selection">Кем дегенде бір таңбалар жинағын таңдаңыз</string>
+    <string name="toast_copied">Буферге көшірілді</string>
+</resources>

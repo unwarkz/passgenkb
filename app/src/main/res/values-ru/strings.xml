@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PassGen Клавиатура</string>
+    <string name="keyboard_label">PassGen Генератор паролей</string>
+    <string name="app_desc">Клавиатура - генератор паролей без разрешений и интернета. Позволяет задать используемые символы и длину, скопировать пароль в буфер при генерации.</string>
+    
+    <!-- MainActivity (Мини-экран) -->
+    <string name="main_title">PassGen Клавиатура</string>
+    <string name="main_subtitle">Настройка и активация</string>
+    <string name="step_1">1. Включите клавиатуру PassGen в настройках</string>
+    <string name="step_2">2. Выберите PassGen как способ ввода</string>
+    <string name="btn_enable">Включить в настройках</string>
+    <string name="btn_choose">Выбрать клавиатуру</string>
+    <string name="security_banner">🔒 Без разрешений и интернета • Абсолютно безопасно</string>
+    
+    <!-- Keyboard view -->
+    <string name="kb_length">Длина: %1$d</string>
+    <string name="kb_cb_lower">a-z (строчные)</string>
+    <string name="kb_cb_upper">A-Z (заглавные)</string>
+    <string name="kb_cb_digits">0-9 (цифры)</string>
+    <string name="kb_cb_symbols">!@#$%&amp;* (спец.)</string>
+    <string name="kb_btn_generate">СГЕНЕРИРОВАТЬ</string>
+    <string name="kb_btn_gen_copy">СГЕНЕРИРОВАТЬ И В БУФЕР</string>
+    <string name="toast_no_selection">Выберите хотя бы один набор символов</string>
+    <string name="toast_copied">Скопировано в буфер</string>
+</resources>

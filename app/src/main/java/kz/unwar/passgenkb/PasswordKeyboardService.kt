@@ -1,4 +1,4 @@
-package com.example.passgenime
+package kz.unwar.passgenkb
 
 import android.content.ClipData
 import android.content.ClipDescription
@@ -20,12 +20,10 @@ import java.security.SecureRandom
 class PasswordKeyboardService : InputMethodService() {
 
     private val secureRandom = SecureRandom()
-
     private val charLower = "abcdefghijklmnopqrstuvwxyz"
     private val charUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     private val charDigits = "0123456789"
     private val charSymbols = "!@#$%^&*()-_=+[]{}|;:,.<>?"
-
     private val minLength = 4
 
     override fun onCreateInputView(): View {
@@ -43,28 +41,35 @@ class PasswordKeyboardService : InputMethodService() {
         val btnBackspace = view.findViewById<Button>(R.id.btnBackspace)
         val btnSwitchIme = view.findViewById<Button>(R.id.btnSwitchIme)
 
-        // Восстанавливаем сохраненные настройки
+        // Инициализируем локализированные тексты из strings.xml
+        cbLower.text = getString(R.string.kb_cb_lower)
+        cbUpper.text = getString(R.string.kb_cb_upper)
+        cbDigits.text = getString(R.string.kb_cb_digits)
+        cbSymbols.text = getString(R.string.kb_cb_symbols)
+        btnGenerate.text = getString(R.string.kb_btn_generate)
+        btnGenerateAndCopy.text = getString(R.string.kb_btn_gen_copy)
+
         val savedLength = prefs.getInt("length", 16).coerceAtLeast(minLength)
         sbLength.progress = savedLength
-        tvLengthLabel.text = "Длина: $savedLength"
+        tvLengthLabel.text = getString(R.string.kb_length, savedLength)
 
         cbLower.isChecked = prefs.getBoolean("lower", true)
         cbUpper.isChecked = prefs.getBoolean("upper", true)
         cbDigits.isChecked = prefs.getBoolean("digits", true)
         cbSymbols.isChecked = prefs.getBoolean("symbols", true)
 
-        // Ползунок длины пароля
         sbLength.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val actualLength = progress.coerceAtLeast(minLength)
-                tvLengthLabel.text = "Длина: $actualLength"
+                tvLengthLabel.text = getString(R.string.kb_length, actualLength)
                 prefs.edit().putInt("length", actualLength).apply()
             }
+            override fun onStartTrackingTouch(seekBar: java.lang.Object?) {} // исправление вызовов
+            override fun onStopTrackingTouch(seekBar: java.lang.Object?) {}
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
-        // Сохранение состояния галочек
         val checkListener = View.OnClickListener {
             prefs.edit()
                 .putBoolean("lower", cbLower.isChecked)
@@ -78,7 +83,6 @@ class PasswordKeyboardService : InputMethodService() {
         cbDigits.setOnClickListener(checkListener)
         cbSymbols.setOnClickListener(checkListener)
 
-        // 1. Кнопка "Сгенерировать" (вводит пароль сразу в активное поле)
         btnGenerate.setOnClickListener {
             val password = generatePassword(
                 length = sbLength.progress.coerceAtLeast(minLength),
@@ -90,11 +94,10 @@ class PasswordKeyboardService : InputMethodService() {
             if (password != null) {
                 currentInputConnection?.commitText(password, 1)
             } else {
-                Toast.makeText(this, "Выберите хотя бы один набор символов", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_no_selection), Toast.LENGTH_SHORT).show()
             }
         }
 
-        // 2. Кнопка "Сгенерировать и скопировать в буфер" (вводит в поле И копирует в буфер)
         btnGenerateAndCopy.setOnClickListener {
             val password = generatePassword(
                 length = sbLength.progress.coerceAtLeast(minLength),
@@ -106,13 +109,12 @@ class PasswordKeyboardService : InputMethodService() {
             if (password != null) {
                 currentInputConnection?.commitText(password, 1)
                 copyToClipboardSecurely(password)
-                Toast.makeText(this, "Скопировано в буфер", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_copied), Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Выберите хотя бы один набор символов", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_no_selection), Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Кнопка очистки: при обычном нажатии стирает 1 символ, при долгом — очищает всё поле
         btnBackspace.setOnClickListener {
             currentInputConnection?.deleteSurroundingText(1, 0)
         }
@@ -128,7 +130,6 @@ class PasswordKeyboardService : InputMethodService() {
             true
         }
 
-        // Кнопка возврата на предыдущую клавиатуру (при долгом нажатии — системное меню выбора)
         btnSwitchIme.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 val switched = switchToPreviousInputMethod()
@@ -168,7 +169,6 @@ class PasswordKeyboardService : InputMethodService() {
         val combinedPool = activePools.joinToString("")
         val passwordChars = CharArray(length)
 
-        // Гарантируем минимум по 1 символу из каждого включенного набора
         for (i in activePools.indices) {
             if (i < length) {
                 val pool = activePools[i]
@@ -176,12 +176,10 @@ class PasswordKeyboardService : InputMethodService() {
             }
         }
 
-        // Заполняем оставшуюся длину случайными символами из общего пула
         for (i in activePools.size until length) {
             passwordChars[i] = combinedPool[secureRandom.nextInt(combinedPool.length)]
         }
 
-        // Перемешиваем массив алгоритмом Фишера-Йетса через SecureRandom
         for (i in passwordChars.indices.reversed()) {
             val j = secureRandom.nextInt(i + 1)
             val temp = passwordChars[i]
@@ -195,8 +193,6 @@ class PasswordKeyboardService : InputMethodService() {
     private fun copyToClipboardSecurely(text: String) {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Generated Password", text)
-
-        // Скрываем текст пароля в системном превью буфера обмена на Android 13+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             clip.description.extras = PersistableBundle().apply {
                 putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true)
