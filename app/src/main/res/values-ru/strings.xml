@@ -20,7 +20,7 @@
     <string name="kb_cb_digits">0-9 (цифры)</string>
     <string name="kb_cb_symbols">!@#$%&amp;* (спец.)</string>
     <string name="kb_btn_generate">СГЕНЕРИРОВАТЬ</string>
-    <string name="kb_btn_gen_copy">СГЕНЕРИРОВАТЬ И В БУФЕР</string>
+    <string name="kb_btn_gen_copy">СГЕНЕРИРОВАТЬ И СКОПИРОВАТЬ</string>
     <string name="toast_no_selection">Выберите хотя бы один набор символов</string>
     <string name="toast_copied">Скопировано в буфер</string>
 </resources>
