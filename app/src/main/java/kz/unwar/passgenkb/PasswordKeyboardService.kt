@@ -28,7 +28,8 @@ class PasswordKeyboardService : InputMethodService() {
 
     override fun onCreateInputView(): View {
         val view = layoutInflater.inflate(R.layout.keyboard_view, null)
-        val prefs = getSharedPreferences("passgen_prefs", Context.MODE_PRIVATE)
+        val storageContext = createDeviceProtectedStorageContext()
+        val prefs = storageContext.getSharedPreferences("passgen_prefs", Context.MODE_PRIVATE)
 
         val tvLengthLabel = view.findViewById<TextView>(R.id.tvLengthLabel)
         val sbLength = view.findViewById<SeekBar>(R.id.sbLength)
@@ -40,14 +41,6 @@ class PasswordKeyboardService : InputMethodService() {
         val btnGenerateAndCopy = view.findViewById<Button>(R.id.btnGenerateAndCopy)
         val btnBackspace = view.findViewById<Button>(R.id.btnBackspace)
         val btnSwitchIme = view.findViewById<Button>(R.id.btnSwitchIme)
-
-        // Инициализируем локализированные тексты из strings.xml
-        cbLower.text = getString(R.string.kb_cb_lower)
-        cbUpper.text = getString(R.string.kb_cb_upper)
-        cbDigits.text = getString(R.string.kb_cb_digits)
-        cbSymbols.text = getString(R.string.kb_cb_symbols)
-        btnGenerate.text = getString(R.string.kb_btn_generate)
-        btnGenerateAndCopy.text = getString(R.string.kb_btn_gen_copy)
 
         val savedLength = prefs.getInt("length", 16).coerceAtLeast(minLength)
         sbLength.progress = savedLength
@@ -64,8 +57,6 @@ class PasswordKeyboardService : InputMethodService() {
                 tvLengthLabel.text = getString(R.string.kb_length, actualLength)
                 prefs.edit().putInt("length", actualLength).apply()
             }
-            override fun onStartTrackingTouch(seekBar: java.lang.Object?) {} // исправление вызовов
-            override fun onStopTrackingTouch(seekBar: java.lang.Object?) {}
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
@@ -169,25 +160,30 @@ class PasswordKeyboardService : InputMethodService() {
         val combinedPool = activePools.joinToString("")
         val passwordChars = CharArray(length)
 
-        for (i in activePools.indices) {
-            if (i < length) {
-                val pool = activePools[i]
-                passwordChars[i] = pool[secureRandom.nextInt(pool.length)]
+        try {
+            for (i in activePools.indices) {
+                if (i < length) {
+                    val pool = activePools[i]
+                    passwordChars[i] = pool[secureRandom.nextInt(pool.length)]
+                }
             }
-        }
 
-        for (i in activePools.size until length) {
-            passwordChars[i] = combinedPool[secureRandom.nextInt(combinedPool.length)]
-        }
+            for (i in activePools.size until length) {
+                passwordChars[i] = combinedPool[secureRandom.nextInt(combinedPool.length)]
+            }
 
-        for (i in passwordChars.indices.reversed()) {
-            val j = secureRandom.nextInt(i + 1)
-            val temp = passwordChars[i]
-            passwordChars[i] = passwordChars[j]
-            passwordChars[j] = temp
-        }
+            for (i in passwordChars.indices.reversed()) {
+                val j = secureRandom.nextInt(i + 1)
+                val temp = passwordChars[i]
+                passwordChars[i] = passwordChars[j]
+                passwordChars[j] = temp
+            }
 
-        return String(passwordChars)
+            return String(passwordChars)
+        } finally {
+            // Затираем буфер символов в ОЗУ сразу после генерации
+            passwordChars.fill('\u0000')
+        }
     }
 
     private fun copyToClipboardSecurely(text: String) {

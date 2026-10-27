@@ -3,15 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#121212"
+    android:fitsSystemWindows="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="24dp">
 
-    <!-- Иконка приложения -->
     <ImageView
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/ic_launcher_foreground" />
 
     <TextView
@@ -33,7 +34,6 @@
         android:textColor="#888888"
         android:textSize="14sp" />
 
-    <!-- Описание приложения -->
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
@@ -47,10 +47,10 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginVertical="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:background="#333333" />
 
-    <!-- Шаг 1: Кнопка включения -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,7 +71,6 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <!-- Шаг 2: Выбор по умолчанию -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -91,16 +90,16 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <Spacer
+    <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Баннер безопасности -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#1A1A1A"
+        android:gravity="center"
         android:padding="12dp"
         android:text="@string/security_banner"
         android:textColor="#00E676"

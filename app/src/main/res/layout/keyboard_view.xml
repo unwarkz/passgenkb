@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:padding="12dp">
 
-    <!-- Верхняя панель: длина пароля и служебные кнопки -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +16,6 @@
             android:id="@+id/tvLengthLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Длина: 16"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -32,7 +30,6 @@
             android:paddingEnd="12dp"
             android:progress="16" />
 
-        <!-- Кнопка удаления символов в поле -->
         <Button
             android:id="@+id/btnBackspace"
             style="?android:attr/buttonBarButtonStyle"
@@ -43,7 +40,6 @@
             android:textColor="#FF6B6B"
             android:textSize="18sp" />
 
-        <!-- Кнопка переключения на обычную клавиатуру -->
         <Button
             android:id="@+id/btnSwitchIme"
             style="?android:attr/buttonBarButtonStyle"
@@ -54,7 +50,6 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-    <!-- Галочки выбора наборов символов (2x2) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="a-z (строчные)"
+            android:text="@string/kb_cb_lower"
             android:textColor="#E0E0E0" />
 
         <CheckBox
@@ -76,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="A-Z (заглавные)"
+            android:text="@string/kb_cb_upper"
             android:textColor="#E0E0E0" />
     </LinearLayout>
 
@@ -91,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="0-9 (цифры)"
+            android:text="@string/kb_cb_digits"
             android:textColor="#E0E0E0" />
 
         <CheckBox
@@ -100,18 +95,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="!@#$%&amp;* (спец.)"
+            android:text="@string/kb_cb_symbols"
             android:textColor="#E0E0E0" />
     </LinearLayout>
 
-    <!-- Большие кнопки генерации -->
     <Button
         android:id="@+id/btnGenerate"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#2E7D32"
-        android:text="СГЕНЕРИРОВАТЬ"
+        android:text="@string/kb_btn_generate"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -122,7 +116,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="6dp"
         android:backgroundTint="#1565C0"
-        android:text="СГЕНЕРИРОВАТЬ И СКОПИРОВАТЬ В БУФЕР"
+        android:text="@string/kb_btn_gen_copy"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:textStyle="bold" />
